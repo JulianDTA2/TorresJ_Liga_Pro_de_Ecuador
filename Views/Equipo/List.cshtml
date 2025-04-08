@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TorresJ_Liga_Pro_de_Ecuador.Models.Equipo>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEquipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEquipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumPartidosJugados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumPartidosGanados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumPartidosPerdidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumPartidosEmpatados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puntos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPartidosJugados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPartidosGanados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPartidosPerdidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPartidosEmpatados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntos)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
