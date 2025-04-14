@@ -2,87 +2,39 @@
 using Microsoft.AspNetCore.Mvc;
 using TorresJ_Liga_Pro_de_Ecuador.Models;
 using TorresJ_Liga_Pro_de_Ecuador.Repos;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
 {
     public class EquipoController : Controller
     {
-        // GET: EquipoController
-        public ActionResult List()
+        public ActionResult Tabla()
         {
             EquipoRepo repo = new EquipoRepo();
             var equipos = repo.DevuelveListadoEquipos();
-
             return View(equipos);
+
         }
 
-        // GET: EquipoController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: EquipoController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: EquipoController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult ActualizarEquipo(Equipo equipo)
         {
-            try
+            EquipoRepo repo = new EquipoRepo();
+            var equipos = repo.DevuelveListadoEquipos();
+            if (eq != null)
             {
-                return RedirectToAction(nameof(Index));
+                equipos.Ganados = equipo.NumPartidosGanados;
+                equipos.Empatados = equipo.NumPartidosEmpatados;
+                equipos.Perdidos = equipo.NumPartidosPerdidos;
+                equipos.Jugados = equipo.NumPartidosGanados + equipo.NumPartidosEmpatados + equipo.NumPartidosPerdidos;
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Tabla");
         }
 
-        // GET: EquipoController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Detalle(int id)
         {
-            return View();
+            var equipo = EquipoRepo.Equipos.FirstOrDefault(e => e.Id == id);
+            return View(equipo);
         }
-
-        // POST: EquipoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: EquipoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: EquipoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+    } 
 }
