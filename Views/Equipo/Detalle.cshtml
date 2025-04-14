@@ -1,0 +1,38 @@
+﻿@model TorresJ_Liga_Pro_de_Ecuador.Models.Equipo
+
+<h2>@Model.NombreEquipo</h2>
+
+<img src="@Model.LogoUrl" alt="@Model.NombreEquipo Logo" style="height:120px" />
+<p>@Model.Descripcion</p>
+
+<form method="post" asp-action="GuardarEstadisticas">
+    <input type="hidden" name="nombre" value="@Model.NombreEquipo" />
+    <div class="row mb-2">
+        <div class="col">
+            <label>Ganados</label>
+            <input type="number" name="ganados" id="ganados" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Empatados</label>
+            <input type="number" name="empatados" id="empatados" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Perdidos</label>
+            <input type="number" name="perdidos" id="perdidos" class="form-control" />
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="calcular()">Calcular puntos</button>
+    <p id="resultado" class="fw-bold mt-2"></p>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+@section Scripts {
+    <script>
+        function calcular() {
+            let g = parseInt(document.getElementById("ganados").value) || 0;
+            let e = parseInt(document.getElementById("empatados").value) || 0;
+            let puntos = g * 3 + e;
+            document.getElementById("resultado").innerText = "Total de puntos: " + puntos;
+        }
+    </script>
+}

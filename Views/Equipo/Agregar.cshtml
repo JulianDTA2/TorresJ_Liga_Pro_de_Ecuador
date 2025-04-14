@@ -1,0 +1,34 @@
+﻿@model TorresJ_Liga_Pro_de_Ecuador.Models.Equipo
+
+@{
+    ViewData["Title"] = "Agregar Equipo";
+}
+
+<h2>Agregar Nuevo Equipo</h2>
+
+<form asp-action="Agregar" method="post">
+    <div class="form-group mb-2">
+        <label asp-for="NombreEquipo"></label>
+        <input asp-for="NombreEquipo" class="form-control" />
+        <span asp-validation-for="NombreEquipo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="LogoUrl">URL del Logo (ej: /images/liga.png)</label>
+        <input asp-for="LogoUrl" class="form-control" />
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Descripcion">Descripción</label>
+        <input asp-for="Descripcion" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Tabla" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

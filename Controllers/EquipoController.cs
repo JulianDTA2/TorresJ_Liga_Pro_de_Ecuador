@@ -8,33 +8,41 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
 {
     public class EquipoController : Controller
     {
-        public ActionResult Tabla()
-        {
-            EquipoRepo repo = new EquipoRepo();
-            var equipos = repo.DevuelveListadoEquipos();
-            return View(equipos);
+        private readonly EquipoRepo _repo = new();
 
+        public IActionResult Tabla()
+        {
+            var equipos = _repo.ObtenerTodos();
+            return View(equipos);
+        }
+
+        public IActionResult Detalle(string nombre)
+        {
+            var equipo = _repo.ObtenerPorNombre(nombre);
+            if (equipo == null) return NotFound();
+            return View(equipo);
         }
 
         [HttpPost]
-        public IActionResult ActualizarEquipo(Equipo equipo)
+        public IActionResult GuardarEstadisticas(string nombre, int ganados, int empatados, int perdidos)
         {
-            EquipoRepo repo = new EquipoRepo();
-            var equipos = repo.DevuelveListadoEquipos();
-            if (eq != null)
-            {
-                equipos.Ganados = equipo.NumPartidosGanados;
-                equipos.Empatados = equipo.NumPartidosEmpatados;
-                equipos.Perdidos = equipo.NumPartidosPerdidos;
-                equipos.Jugados = equipo.NumPartidosGanados + equipo.NumPartidosEmpatados + equipo.NumPartidosPerdidos;
-            }
+            _repo.ActualizarEstadisticas(nombre, ganados, empatados, perdidos);
             return RedirectToAction("Tabla");
         }
-
-        public IActionResult Detalle(int id)
+        public IActionResult Agregar()
         {
-            var equipo = EquipoRepo.Equipos.FirstOrDefault(e => e.Id == id);
-            return View(equipo);
+            return View();
         }
-    } 
+
+        [HttpPost]
+        public IActionResult Agregar(Equipo nuevoEquipo)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.Agregar(nuevoEquipo);
+                return RedirectToAction("Tabla");
+            }
+            return View(nuevoEquipo);
+        }
+    }
 }

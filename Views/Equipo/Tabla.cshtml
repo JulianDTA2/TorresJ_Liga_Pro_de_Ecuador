@@ -1,0 +1,42 @@
+﻿@model List<TorresJ_Liga_Pro_de_Ecuador.Models.Equipo>
+
+<h2>Tabla de Posiciones</h2>
+
+<div class="mb-3">
+    <a asp-action="Agregar" class="btn btn-success">Agregar Nuevo Equipo</a>
+</div>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Posicion</th>
+            <th>Logo</th>
+            <th>Equipo</th>
+            <th>PJ</th>
+            <th>G</th>
+            <th>E</th>
+            <th>P</th>
+            <th>Puntos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var e = Model[i];
+            <tr>
+                <td>@(i + 1)</td>
+                <td><img src="@e.LogoUrl" alt="Logo @e.NombreEquipo" style="height:50px" /></td>
+                <td>@e.NombreEquipo</td>
+                <td>@e.NumPartidosJugados</td>
+                <td>@e.NumPartidosGanados</td>
+                <td>@e.NumPartidosEmpatados</td>
+                <td>@e.NumPartidosPerdidos</td>
+                <td>@e.Puntos</td>
+                <td>
+                    <a asp-action="Detalle" asp-route-nombre="@e.NombreEquipo" class="btn btn-primary">Ver información Equipo</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
