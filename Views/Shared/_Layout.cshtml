@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TorresJ_Liga_Pro_de_Ecuador</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LigaPro Ecuador</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Equipo" asp-action="Tabla">Tabla de Posiciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Jugadores" asp-action="Index">Jugadores</a>
                         </li>
                     </ul>
                 </div>
@@ -37,8 +40,14 @@
     </div>
 
     <footer class="bg-dark text-white p-3 mt-5 text-center">
-        <p>Julián David Torres - Ingeniería en Software</p>
-        <p>Apasionado por el desarrollo full stack y el fútbol ecuatoriano.</p>
+        <p>Ingeniería en Software - Programación 4</p>
+        <p>Equipo apasionado por el desarrollo full stack y el fútbol ecuatoriano.</p>
+        <ul style="text-align: left;">
+            <li>Javier Arias</li>
+            <li>Julian Torres</li>
+            <li>Luis Pineda</li>
+            <li>Galo Guevara</li>
+        </ul>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
