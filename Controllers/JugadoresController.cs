@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TorresJ_Liga_Pro_de_Ecuador.Models;
-using _Liga_Pro_de_Ecuador.Data;
+using TorresJ_Liga_Pro_de_Ecuador.Data;
 
 namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
 {
