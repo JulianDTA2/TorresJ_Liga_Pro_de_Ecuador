@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:TorresJ_Liga_Pro_de_EcuadorContext"
+    }
+  }
+}
