@@ -11,8 +11,8 @@ using _Liga_Pro_de_Ecuador.Data;
 namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
 {
     [DbContext(typeof(TorresJ_Liga_Pro_de_EcuadorContext))]
-    [Migration("20250430213648_Migracion_V1")]
-    partial class Migracion_V1
+    [Migration("20250430220325_MigracionInicial")]
+    partial class MigracionInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,7 +84,7 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("sueldo")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("IdNombre");
 

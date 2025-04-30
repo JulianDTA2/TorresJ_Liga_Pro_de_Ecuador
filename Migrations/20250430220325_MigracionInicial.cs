@@ -5,7 +5,7 @@
 namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
 {
     /// <inheritdoc />
-    public partial class Migracion_V1 : Migration
+    public partial class MigracionInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,7 +38,7 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
                     dorsal = table.Column<int>(type: "int", nullable: false),
                     goles = table.Column<int>(type: "int", nullable: false),
                     asistencias = table.Column<int>(type: "int", nullable: false),
-                    sueldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    sueldo = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     IdEquipoActual = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -49,7 +49,7 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
                         column: x => x.IdEquipoActual,
                         principalTable: "Equipo",
                         principalColumn: "IdEquipo",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

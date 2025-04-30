@@ -7,9 +7,14 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Models
     {
         [Key]
         public string IdNombre { get; set; }
+        [Required]
+        [Range(0,99)]
         public int dorsal { get; set; }
+        [Range(0, 99)]
         public int goles { get; set; }
+        [Range(0, 99)]
         public int asistencias { get; set; }
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal sueldo { get; set; }
         public int IdEquipoActual { get; set; }
         [ForeignKey("IdEquipoActual")]

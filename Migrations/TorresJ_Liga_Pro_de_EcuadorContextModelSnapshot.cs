@@ -81,7 +81,7 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("sueldo")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("IdNombre");
 
