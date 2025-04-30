@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TorresJ_Liga_Pro_de_Ecuador.Data;
 
@@ -10,9 +11,11 @@ using TorresJ_Liga_Pro_de_Ecuador.Data;
 namespace TorresJ_Liga_Pro_de_Ecuador.Migrations
 {
     [DbContext(typeof(TorresJ_Liga_Pro_de_EcuadorContext))]
-    partial class TorresJ_Liga_Pro_de_EcuadorContextModelSnapshot : ModelSnapshot
+    [Migration("20250430232252_AddEquipoTable")]
+    partial class AddEquipoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

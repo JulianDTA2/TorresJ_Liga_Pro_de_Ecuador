@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿// Controllers/EquipoController.cs
 using Microsoft.AspNetCore.Mvc;
 using TorresJ_Liga_Pro_de_Ecuador.Models;
 using TorresJ_Liga_Pro_de_Ecuador.Repos;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
 {
     public class EquipoController : Controller
     {
-        private readonly EquipoRepo _repo = new();
+        private readonly EquipoRepo _repo;
+
+        public EquipoController(EquipoRepo repo)
+        {
+            _repo = repo;
+        }
 
         public IActionResult Tabla()
         {
@@ -29,6 +33,7 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
             _repo.ActualizarEstadisticas(nombre, ganados, empatados, perdidos);
             return RedirectToAction("Tabla");
         }
+
         public IActionResult Agregar()
         {
             return View();
