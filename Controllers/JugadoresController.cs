@@ -19,6 +19,29 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
             _context = context;
         }
 
+        // Nueva acción para buscar jugadores por equipo
+        public async Task<IActionResult> BuscarPorEquipo(string equipoNombre)
+        {
+            // Obtener la lista de equipos para el dropdown
+            ViewBag.Equipos = await _context.Equipo
+                .Select(e => e.NombreEquipo)
+                .ToListAsync();
+
+            // Si no se seleccionó un equipo, devolver la vista vacía
+            if (string.IsNullOrEmpty(equipoNombre))
+            {
+                return View(new List<Jugador>());
+            }
+
+            // Buscar jugadores del equipo seleccionado
+            var jugadores = await _context.Jugador
+                .Include(j => j.Equipo)
+                .Where(j => j.Equipo.NombreEquipo == equipoNombre)
+                .ToListAsync();
+
+            return View(jugadores);
+        }
+
         // GET: Jugadores
         public async Task<IActionResult> Index()
         {

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TorresJ_Liga_Pro_de_Ecuador.Models.Jugador>
+
+@{
+    ViewData["Title"] = "Buscar Jugadores por Equipo";
+}
+
+<h1>Buscar Jugadores por Equipo</h1>
+
+<form method="get" asp-action="BuscarPorEquipo">
+    <div class="form-group">
+        <label for="equipoNombre">Seleccione un equipo:</label>
+        <select id="equipoNombre" name="equipoNombre" class="form-control">
+            <option value="">-- Seleccione un equipo --</option>
+            @foreach (var equipo in ViewBag.Equipos as List<string>)
+            {
+                <option value="@equipo">@equipo</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+@if (Model.Any())
+{
+    <h2>Resultados</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().dorsal)</th>
+                <th>@Html.DisplayNameFor(model => model.First().goles)</th>
+                <th>@Html.DisplayNameFor(model => model.First().asistencias)</th>
+                <th>@Html.DisplayNameFor(model => model.First().sueldo)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Equipo.NombreEquipo)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jugador in Model)
+            {
+                <tr>
+                    <td>@jugador.dorsal</td>
+                    <td>@jugador.goles</td>
+                    <td>@jugador.asistencias</td>
+                    <td>@jugador.sueldo.ToString("C2", new System.Globalization.CultureInfo("en-US"))</td>
+                    <td>@jugador.Equipo.NombreEquipo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (!string.IsNullOrEmpty(Context.Request.Query["equipoNombre"]))
+{
+    <p>No se encontraron jugadores para el equipo seleccionado.</p>
+}
