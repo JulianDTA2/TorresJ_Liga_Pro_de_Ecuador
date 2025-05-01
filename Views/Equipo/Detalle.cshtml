@@ -1,12 +1,42 @@
-﻿@model TorresJ_Liga_Pro_de_Ecuador.Models.Equipo
+﻿@model TorresJ_Liga_Pro_de_Ecuador.Controllers.EquipoController.EquipoDetalleViewModel
 
-<h2>@Model.NombreEquipo</h2>
+<h2>@Model.Equipo.NombreEquipo</h2>
 
-<img src="@Model.LogoUrl" alt="@Model.NombreEquipo Logo" style="height:120px" />
-<p>@Model.Descripcion</p>
+<img src="@Model.Equipo.LogoUrl" alt="@Model.Equipo.NombreEquipo Logo" style="height:120px" />
+<p>@Model.Equipo.Descripcion</p>
+
+<h3>Jugadores</h3>
+@if (Model.Jugadores.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dorsal</th>
+                <th>Goles</th>
+                <th>Asistencias</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jugador in Model.Jugadores)
+            {
+                <tr>
+                    <td>@jugador.IdNombre</td>
+                    <td>@jugador.dorsal</td>
+                    <td>@jugador.goles</td>
+                    <td>@jugador.asistencias</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No hay jugadores registrados para este equipo.</p>
+}
 
 <form method="post" asp-action="GuardarEstadisticas">
-    <input type="hidden" name="nombre" value="@Model.NombreEquipo" />
+    <input type="hidden" name="nombre" value="@Model.Equipo.NombreEquipo" />
     <div class="row mb-2">
         <div class="col">
             <label>Ganados</label>

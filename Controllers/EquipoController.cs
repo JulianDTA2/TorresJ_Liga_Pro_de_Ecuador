@@ -1,5 +1,6 @@
 ﻿// Controllers/EquipoController.cs
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TorresJ_Liga_Pro_de_Ecuador.Models;
 using TorresJ_Liga_Pro_de_Ecuador.Repos;
 
@@ -24,8 +25,27 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
         {
             var equipo = _repo.ObtenerPorNombre(nombre);
             if (equipo == null) return NotFound();
-            return View(equipo);
+
+            // Obtener jugadores del equipo
+            var jugadores = _repo.ObtenerJugadoresPorEquipo(equipo.IdEquipo);
+
+            // Crear un ViewModel para pasar ambos datos
+            var viewModel = new EquipoDetalleViewModel
+            {
+                Equipo = equipo,
+                Jugadores = jugadores
+            };
+
+            return View(viewModel);
         }
+
+        public class EquipoDetalleViewModel
+        {
+            public Equipo Equipo { get; set; }
+            public List<Jugador> Jugadores { get; set; }
+        }
+
+
 
         [HttpPost]
         public IActionResult GuardarEstadisticas(string nombre, int ganados, int empatados, int perdidos)
@@ -49,5 +69,9 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
             }
             return View(nuevoEquipo);
         }
+
+
+
+
     }
 }
