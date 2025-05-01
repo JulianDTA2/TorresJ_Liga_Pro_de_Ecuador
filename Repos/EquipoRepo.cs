@@ -52,5 +52,10 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Repos
             return _context.Jugador.Where(j => j.IdEquipoActual == equipoId).ToList();
         }
 
+        public List<Jugador> ObtenerTodosLosJugadores()
+        {
+            return _context.Jugador.ToList();
+        }
+
     }
 }

@@ -1,0 +1,61 @@
+﻿@model TorresJ_Liga_Pro_de_Ecuador.ViewModels.ReporteViewModel
+
+<h2>Reporte de Liga</h2>
+
+<h3>Top 5 Goleadores</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Goles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jugador in Model.TopGoleadores)
+        {
+            <tr>
+                <td>@jugador.Nombre</td>
+                <td>@jugador.Valor</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Top 5 Asistentes</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Asistencias</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jugador in Model.TopAsistentes)
+        {
+            <tr>
+                <td>@jugador.Nombre</td>
+                <td>@jugador.Valor</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Top 5 Equipos por Presupuesto</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Equipo</th>
+            <th>Presupuesto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var equipo in Model.TopEquiposPorPresupuesto)
+        {
+            <tr>
+                <td>@equipo.NombreEquipo</td>
+                <td>@equipo.Presupuesto.ToString("C")</td> <!-- Formato de moneda -->
+            </tr>
+        }
+    </tbody>
+</table>
+

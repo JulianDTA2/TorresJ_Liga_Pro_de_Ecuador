@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 using TorresJ_Liga_Pro_de_Ecuador.Data;
 using TorresJ_Liga_Pro_de_Ecuador.Repos;
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

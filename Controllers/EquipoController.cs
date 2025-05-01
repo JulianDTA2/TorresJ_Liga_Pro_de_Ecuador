@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TorresJ_Liga_Pro_de_Ecuador.Models;
 using TorresJ_Liga_Pro_de_Ecuador.Repos;
+using TorresJ_Liga_Pro_de_Ecuador.ViewModels;
 
 namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
 {
@@ -71,6 +72,51 @@ namespace TorresJ_Liga_Pro_de_Ecuador.Controllers
         }
 
 
+        public IActionResult Reporte()
+        {
+            // Obtener los 5 jugadores con más goles
+            var topGoleadores = _repo.ObtenerTodosLosJugadores()
+                .OrderByDescending(j => j.goles)
+                .Take(5)
+                .Select(j => new JugadorReporte
+                {
+                    Nombre = j.IdNombre,
+                    Valor = j.goles
+                })
+                .ToList();
+
+            // Obtener los 5 jugadores con más asistencias
+            var topAsistentes = _repo.ObtenerTodosLosJugadores()
+                .OrderByDescending(j => j.asistencias)
+                .Take(5)
+                .Select(j => new JugadorReporte
+                {
+                    Nombre = j.IdNombre,
+                    Valor = j.asistencias
+                })
+                .ToList();
+
+            // Obtener los 5 equipos con mayor presupuesto
+            var topEquiposPorPresupuesto = _repo.ObtenerTodos()
+                .Select(e => new EquipoReporte
+                {
+                    NombreEquipo = e.NombreEquipo,
+                    Presupuesto = _repo.ObtenerJugadoresPorEquipo(e.IdEquipo).Sum(j => j.sueldo)
+                })
+                .OrderByDescending(e => e.Presupuesto)
+                .Take(5)
+                .ToList();
+
+            // Crear el ViewModel
+            var viewModel = new ReporteViewModel
+            {
+                TopGoleadores = topGoleadores,
+                TopAsistentes = topAsistentes,
+                TopEquiposPorPresupuesto = topEquiposPorPresupuesto
+            };
+
+            return View(viewModel);
+        }
 
 
     }
