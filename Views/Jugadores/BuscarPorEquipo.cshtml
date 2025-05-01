@@ -26,17 +26,19 @@
     <table class="table">
         <thead>
             <tr>
+                <th>@Html.DisplayNameFor(model => model.First().IdNombre)</th>
                 <th>@Html.DisplayNameFor(model => model.First().dorsal)</th>
                 <th>@Html.DisplayNameFor(model => model.First().goles)</th>
                 <th>@Html.DisplayNameFor(model => model.First().asistencias)</th>
                 <th>@Html.DisplayNameFor(model => model.First().sueldo)</th>
-                <th>@Html.DisplayNameFor(model => model.First().Equipo.NombreEquipo)</th>
+                <th>Equipo</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var jugador in Model)
             {
                 <tr>
+                    <td>@jugador.IdNombre</td>
                     <td>@jugador.dorsal</td>
                     <td>@jugador.goles</td>
                     <td>@jugador.asistencias</td>
